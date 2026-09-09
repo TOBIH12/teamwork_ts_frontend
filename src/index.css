@@ -12,3 +12,23 @@ body {
     height: 100vh;
     width: 100%;
 }
+
+.theme_background{
+    background-color: #27aa83 !important;
+}
+
+.theme_text{
+    color: #27aa83 !important;
+}
+
+.text_gray{
+    color:  rgb(240, 237, 237) !important;
+}
+
+.text_white{
+    color:  white !important;
+}
+
+.text_black{
+    color:  black !important;
+}
