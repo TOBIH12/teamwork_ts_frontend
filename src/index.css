@@ -4,6 +4,7 @@
 body {
   color: var(--foreground);
   font-family: Outfit;
+  background-color: rgb(241, 242, 243);
 }
 
 .loader{
