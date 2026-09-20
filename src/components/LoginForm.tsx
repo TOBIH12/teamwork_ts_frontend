@@ -6,6 +6,7 @@ import { useState } from 'react';
 import Button from './Button';
 import Input from './Input';
 import { emailStyle, passwordStyle, submitButtonStyle } from './InputStyles';
+import { Link } from 'react-router-dom';
 
 const LoginForm = () => {
   const [visible, setVisible] = useState(false);
@@ -49,7 +50,9 @@ const LoginForm = () => {
         Forgot your password?
       </a>
 
+      <Link to="/feed">
       <Button title='submit' type="submit" buttonText="Sign in" buttonStyle={submitButtonStyle} />
+      </Link>
     </form>
   );
 };

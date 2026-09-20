@@ -94,7 +94,7 @@ const NavBar = () => {
 
                   <div className="flex flex-col py-1 px-2">
                     <Link
-                      to={'/logout'}
+                      to={'/auth/logout'}
                       className="flex w-full p-1 items-center align-center gap-2 rounded-xl font-light text-red-600 hover:bg-[#27aa83]/20 hover:text-[#27aa83] transition duration-200"
                     >
                       <IoIosLogOut />
