@@ -1,10 +1,5 @@
-
 const Feed = () => {
-  return (
-    <div className="page_container ">
-      Feed Page
-    </div>
-  )
-}
+  return <div className="page_container ">Feed Page</div>;
+};
 
-export default Feed
+export default Feed;
