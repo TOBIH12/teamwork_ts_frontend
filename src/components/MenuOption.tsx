@@ -17,7 +17,7 @@ const MenuOption = ({icon, options, style}: MenuOptions) => {
   return (
    <div className="relative" onClick={handleProfileClick} ref={ref}>
              {icon}
-            <span className={componentClicked ? `absolute flex flex-col bg-white shadow-md border border-gray-200 rounded-xl ${style}` : "hidden"}>
+            <span className={componentClicked ? `absolute flex flex-col bg-white shadow-md border border-gray-200 rounded-xl ${style} z-10` : "hidden"}>
                 {options}
             </span>
              </div>

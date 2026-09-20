@@ -5,11 +5,12 @@ type ButtonProps = {
   buttonStyle: string
   icon?: ReactNode
   buttonText: string
+  title: string
 }
 
-const Button = ({type, icon, buttonText, buttonStyle}: ButtonProps) => {
+const Button = ({type, icon, buttonText, buttonStyle, title}: ButtonProps) => {
   return (
-     <button type={type} className={buttonStyle}>{icon} {buttonText}</button>
+     <button type={type} className={buttonStyle} title={title}>{icon} {buttonText}</button>
   )
 }
 

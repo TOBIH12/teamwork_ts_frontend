@@ -8,6 +8,10 @@ import Home from './pages/Home'
 import Login from './pages/Login'
 import Logout from './pages/Logout'
 import AuthLayout from './components/AuthLayout'
+import Feed from './pages/Feed'
+import Articles from './pages/Articles'
+import Gifs from './pages/Gifs'
+import Colleagues from './pages/Colleagues'
 
 const router = createBrowserRouter([
   {
@@ -16,6 +20,10 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage/>,
     children: [
      {index: true, element: <Home />},
+     {path: '/feed', element: <Feed />},
+     {path: '/articles', element: <Articles />},
+     {path: '/gifs', element: <Gifs />},
+     {path: '/colleagues', element: <Colleagues />},
 
     ]
   },

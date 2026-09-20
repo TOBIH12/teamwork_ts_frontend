@@ -33,3 +33,10 @@ body {
 .text_black{
     color:  black !important;
 }
+
+.page_container{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
