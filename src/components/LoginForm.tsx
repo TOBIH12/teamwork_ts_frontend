@@ -51,7 +51,7 @@ const LoginForm = () => {
       </a>
 
       <Link to="/feed">
-      <Button title='submit' type="submit" buttonText="Sign in" buttonStyle={submitButtonStyle} />
+        <Button title="submit" type="submit" buttonText="Sign in" buttonStyle={submitButtonStyle} />
       </Link>
     </form>
   );
