@@ -4,7 +4,7 @@ import { RiGroupLine, RiMenu3Fill } from 'react-icons/ri';
 import { CiSearch, CiSettings } from 'react-icons/ci';
 import { FaPlus } from 'react-icons/fa6';
 import { IoMdNotificationsOutline, IoIosLogOut, IoMdClose } from 'react-icons/io';
-import { MdPerson } from 'react-icons/md';
+import { MdPerson, MdOutlinePersonAddAlt } from 'react-icons/md';
 import { createButtonStyle, searchStyle } from './InputStyles';
 import Input from './Input';
 import Button from './Button';
@@ -52,7 +52,7 @@ const NavBar = () => {
               type="button"
               title="Create"
               icon={<FaPlus />}
-              buttonText={`Create`}
+              buttonText={`Post`}
               buttonStyle={`${createButtonStyle}`}
             />
 
@@ -71,7 +71,7 @@ const NavBar = () => {
               options={
                 <>
                   <div className="flex flex-col w-full border-b border-gray-200 py-2 px-4">
-                    <h1>Sarah Washington</h1>
+                    <h1>Sarah Washington <small>| Employee</small> </h1>
                     <p className="text-sm text-gray-500 mt-0">sarahwashington@company.com</p>
                   </div>
 
@@ -82,6 +82,13 @@ const NavBar = () => {
                     >
                       <MdPerson />
                       Profile
+                    </Link>
+                    <Link
+                      to={'/create-user'}
+                      className="flex w-full p-1 items-center align-center gap-2 rounded-xl font-light hover:bg-[#27aa83]/20 hover:text-[#27aa83] transition duration-200"
+                    >
+                      <MdOutlinePersonAddAlt />
+                      Create user account
                     </Link>
                     <Link
                       to={'/settings'}
