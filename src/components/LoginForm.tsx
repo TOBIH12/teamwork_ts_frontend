@@ -6,13 +6,12 @@ import { useState } from 'react';
 import Button from './Button';
 import Input from './Input';
 import { emailStyle, passwordStyle, submitButtonStyle } from './InputStyles';
-import { Link } from 'react-router-dom';
 
 const LoginForm = () => {
   const [visible, setVisible] = useState(false);
 
   return (
-    <form className="w-full max-w-md mx-auto p-6">
+    <form action="submit" className="w-full max-w-md mx-auto p-6">
       <p className="text-sm text-left font-semibold">Email</p>
       <Input
         formStyle={emailStyle}
@@ -50,9 +49,7 @@ const LoginForm = () => {
         Forgot your password?
       </a>
 
-      <Link to="/feed">
-        <Button title="submit" type="submit" buttonText="Sign in" buttonStyle={submitButtonStyle} />
-      </Link>
+      <Button title="sign in" type="submit" buttonText="Sign in" buttonStyle={submitButtonStyle} />
     </form>
   );
 };

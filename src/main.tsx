@@ -12,6 +12,7 @@ import Feed from './pages/Feed';
 import Articles from './pages/Articles';
 import Gifs from './pages/Gifs';
 import Colleagues from './pages/Colleagues';
+import RegisterUser from './pages/RegisterUser';
 
 const router = createBrowserRouter([
   {
@@ -33,6 +34,7 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       { path: 'login', element: <Login /> },
+      { path: 'register-user', element: <RegisterUser /> },
       { path: 'logout', element: <Logout /> },
     ],
   },

@@ -71,7 +71,9 @@ const NavBar = () => {
               options={
                 <>
                   <div className="flex flex-col w-full border-b border-gray-200 py-2 px-4">
-                    <h1>Sarah Washington <small>| Employee</small> </h1>
+                    <h1>
+                      Sarah Washington <small>| admin</small>{' '}
+                    </h1>
                     <p className="text-sm text-gray-500 mt-0">sarahwashington@company.com</p>
                   </div>
 
@@ -84,11 +86,11 @@ const NavBar = () => {
                       Profile
                     </Link>
                     <Link
-                      to={'/create-user'}
+                      to={'/auth/register-user'}
                       className="flex w-full p-1 items-center align-center gap-2 rounded-xl font-light hover:bg-[#27aa83]/20 hover:text-[#27aa83] transition duration-200"
                     >
                       <MdOutlinePersonAddAlt />
-                      Create user account
+                      Register new user
                     </Link>
                     <Link
                       to={'/settings'}
