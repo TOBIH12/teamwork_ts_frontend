@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import Button from './Button';
 import Input from './Input';
 import { emailStyle, passwordStyle, submitButtonStyle } from './InputStyles';
@@ -58,12 +59,12 @@ const CreateUserForm = () => {
         buttonStyle={`${submitButtonStyle}`}
       />
 
-      <a
-        href="/feed"
+      <Link
+        to="/feed"
         className="flex text-sm justify-center items-center theme_text my-2 hover:underline"
       >
         <IoArrowBack /> back to feed
-      </a>
+      </Link>
     </form>
   );
 };

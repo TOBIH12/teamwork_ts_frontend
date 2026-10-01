@@ -6,6 +6,7 @@ import { MdOutlineMailOutline } from 'react-icons/md';
 import Button from '../components/Button';
 import { useState } from 'react';
 import { IoArrowBack } from 'react-icons/io5';
+import { Link } from 'react-router-dom';
 
 const ForgotPassword = () => {
   const [submitted, setSubmitted] = useState<boolean>(false);
@@ -53,12 +54,12 @@ const ForgotPassword = () => {
             follow the instructions.
           </p>
 
-          <a
-            href="/auth/login"
+          <Link
+            to="/auth/login"
             className="w-fit flex text-sm items-center theme_text my-2 hover:underline"
           >
             <IoArrowBack /> back to login
-          </a>
+          </Link>
         </div>
       )}
     </div>

@@ -6,6 +6,7 @@ import { useState, type SubmitEvent } from 'react';
 import Button from './Button';
 import Input from './Input';
 import { emailStyle, passwordStyle, submitButtonStyle } from './InputStyles';
+import { Link } from 'react-router-dom';
 
 type LoginProps = {
   handleLogin: (e: SubmitEvent<HTMLFormElement>) => void;
@@ -49,9 +50,9 @@ const LoginForm = ({ handleLogin }: LoginProps) => {
         required
       />
 
-      <a href="/auth/forgot-password" className="flex max-w-fit text-sm align-left theme_text mb-2">
+      <Link to="/auth/forgot-password" className="flex max-w-fit text-sm align-left theme_text mb-2">
         Forgot your password?
-      </a>
+      </Link>
 
       <Button title="sign in" type="submit" buttonText="Sign in" buttonStyle={submitButtonStyle} />
     </form>
