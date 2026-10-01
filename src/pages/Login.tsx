@@ -12,8 +12,8 @@ const Login = () => {
     return navigate('/feed');
   };
   return (
-    <div className="w-full h-screen flex flex-col md:flex-row justify-center items-center">
-      <div className="hidden md:flex md:flex-col w-1/2 h-full p-12 justify-center text-left theme_background text_white">
+    <div className="w-full flex flex-col lg:flex-row lg:h-screen h-full">
+      <div className="hidden lg:flex lg:flex-col w-1/2 p-12 justify-center text-left theme_background text_white">
         <TeamworkLogo
           logoStyle="flex gap-3 items-center mb-10"
           logoIcon={<RiGroupLine className=" bg-gray-200/20 p-3 rounded-2xl" size={55} />}
@@ -39,9 +39,9 @@ const Login = () => {
         </div>
       </div>
 
-      <div className="w-full h-full md:w-1/2 flex flex-col items-center text-center p-8 align-center justify-center">
+      <div className="w-full lg:w-1/2 flex flex-col items-center justify-center text-center p-8">
         <TeamworkLogo
-          logoStyle="flex gap-3 items-center mb-10 md:hidden"
+          logoStyle="flex gap-3 items-center mb-10 lg:hidden"
           logoIcon={
             <RiGroupLine className="theme_background text-white p-3 rounded-2xl" size={50} />
           }

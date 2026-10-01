@@ -9,7 +9,7 @@ const CreateUserForm = () => {
   const JOB_ROLE = ['admin', 'employee'];
 
   return (
-    <form action="submit" className="w-full md:max-w-lg mx-auto p-6">
+    <form action="submit" name="createUserForm" className="w-full md:max-w-lg mx-auto p-6">
       <p className="text-sm text-left font-semibold">First Name</p>
       <Input formStyle={emailStyle} type="text" placeholder="First Name" required />
 

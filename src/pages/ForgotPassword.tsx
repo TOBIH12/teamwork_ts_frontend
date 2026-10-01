@@ -16,7 +16,7 @@ const ForgotPassword = () => {
   };
 
   return (
-    <div className="w-full h-screen flex flex-col items-center justify-center gap-2 p-4">
+    <div className="w-full h-screen flex flex-col items-center gap-2 p-4">
       <TeamworkLogo
         logoStyle="flex gap-2 items-center my-8 cursor-pointer"
         logoIcon={<RiGroupLine className="theme_background text-white p-2 rounded-xl" size={37} />}
@@ -24,10 +24,10 @@ const ForgotPassword = () => {
       />
 
       {!submitted && (
-        <div className="w-full md:w-md bg-white flex flex-col p-4 rounded-xl shadow-md">
+        <div className="w-sm md:w-md bg-white flex flex-col p-4 rounded-xl shadow-md">
           <p className="text-lg font-medium text-center mb-3">Input your email address below.</p>
 
-          <form action="submit" onSubmit={handleSubmit}>
+          <form action="submit" name="forgotPasswordForm" onSubmit={handleSubmit}>
             <p className="text-sm text-left font-semibold">Email</p>
             <Input
               formStyle={emailStyle}

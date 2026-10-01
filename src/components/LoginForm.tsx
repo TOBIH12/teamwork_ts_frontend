@@ -16,7 +16,12 @@ const LoginForm = ({ handleLogin }: LoginProps) => {
   const [visible, setVisible] = useState(false);
 
   return (
-    <form className="w-full max-w-md mx-auto p-6" onSubmit={handleLogin}>
+    <form
+      action="submit"
+      name="loginForm"
+      className="w-full max-w-md mx-auto p-6"
+      onSubmit={handleLogin}
+    >
       <p className="text-sm text-left font-semibold">Email</p>
       <Input
         formStyle={emailStyle}
@@ -50,7 +55,10 @@ const LoginForm = ({ handleLogin }: LoginProps) => {
         required
       />
 
-      <Link to="/auth/forgot-password" className="flex max-w-fit text-sm align-left theme_text mb-2">
+      <Link
+        to="/auth/forgot-password"
+        className="flex max-w-fit text-sm align-left theme_text mb-2"
+      >
         Forgot your password?
       </Link>
 
