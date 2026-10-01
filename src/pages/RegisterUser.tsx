@@ -10,9 +10,9 @@ const RegisterUser = () => {
         logoIcon={<RiGroupLine className="theme_background text-white p-2 rounded-xl" size={35} />}
         logoTextStyle="text-2xl font-semibold"
       />
-      <div className="w-full md:w-md my-2 flex flex-col items-center bg-white border border-gray-300 rounded-xl py-2 shadow-lg">
+      <div className="w-full md:w-md my-2 flex flex-col items-center bg-white border border-gray-300 rounded-xl mx-auto p-6 shadow-lg">
         <h1 className="text-2xl font-semibold mt-4">Register User</h1>
-        <p className="text-gray-500 text-md">Input neccessary details to register new account.</p>
+        <p className="text-gray-500 text-md text-center my-4">Input neccessary details to register new account.</p>
 
         <CreateUserForm />
       </div>
