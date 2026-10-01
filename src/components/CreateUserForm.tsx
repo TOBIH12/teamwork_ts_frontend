@@ -4,11 +4,11 @@ import { emailStyle, passwordStyle, submitButtonStyle } from './InputStyles';
 import { IoArrowBack } from 'react-icons/io5';
 
 const CreateUserForm = () => {
-  const GENDER_OPTIONS = ['other', 'male', 'female'];
-  const JOB_ROLE = ['other', 'admin', 'employee'];
+  const GENDER_OPTIONS = ['male', 'female'];
+  const JOB_ROLE = ['admin', 'employee'];
 
   return (
-    <form action="submit" className="w-full max-w-lg mx-auto p-6">
+    <form action="submit" className="w-full md:max-w-lg mx-auto p-6">
       <p className="text-sm text-left font-semibold">First Name</p>
       <Input formStyle={emailStyle} type="text" placeholder="First Name" required />
 
@@ -20,17 +20,28 @@ const CreateUserForm = () => {
 
       <p className="text-sm text-left font-semibold">Password</p>
       <Input formStyle={passwordStyle} type="password" placeholder="Password" required />
+
       <p className="text-sm text-left font-semibold mt-4">Gender</p>
-      <select name="gender" id="" className={`w-full ${emailStyle}`}>
+      <select name="gender" id="" className={`w-full ${emailStyle}`} required>
+        <option value="" disabled selected>
+          Select gender
+        </option>
         {GENDER_OPTIONS.map((gender) => (
-          <option key={gender}>{gender}</option>
+          <option key={gender} value={gender}>
+            {gender}
+          </option>
         ))}
       </select>
 
       <p className="text-sm text-left font-semibold mt-4">Job Role</p>
-      <select name="job role" id="" className={`w-full ${emailStyle}`}>
+      <select name="jobRole" id="" className={`w-full ${emailStyle}`} required>
+        <option value="" disabled selected>
+          Select job role
+        </option>
         {JOB_ROLE.map((role) => (
-          <option key={role}>{role}</option>
+          <option key={role} value={role}>
+            {role}
+          </option>
         ))}
       </select>
 

@@ -13,6 +13,8 @@ import Articles from './pages/Articles';
 import Gifs from './pages/Gifs';
 import Colleagues from './pages/Colleagues';
 import RegisterUser from './pages/RegisterUser';
+import ForgotPassword from './pages/ForgotPassword';
+import ResetPassword from './pages/ResetPassword';
 
 const router = createBrowserRouter([
   {
@@ -36,6 +38,8 @@ const router = createBrowserRouter([
       { path: 'login', element: <Login /> },
       { path: 'register-user', element: <RegisterUser /> },
       { path: 'logout', element: <Logout /> },
+      { path: 'forgot-password', element: <ForgotPassword /> },
+      { path: 'reset-password', element: <ResetPassword /> },
     ],
   },
 ]);

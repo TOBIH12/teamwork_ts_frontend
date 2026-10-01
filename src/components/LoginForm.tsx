@@ -2,16 +2,20 @@ import { MdOutlineMailOutline } from 'react-icons/md';
 import { CiLock } from 'react-icons/ci';
 import { GoEye } from 'react-icons/go';
 import { GoEyeClosed } from 'react-icons/go';
-import { useState } from 'react';
+import { useState, type SubmitEvent } from 'react';
 import Button from './Button';
 import Input from './Input';
 import { emailStyle, passwordStyle, submitButtonStyle } from './InputStyles';
 
-const LoginForm = () => {
+type LoginProps = {
+  handleLogin: (e: SubmitEvent<HTMLFormElement>) => void;
+};
+
+const LoginForm = ({ handleLogin }: LoginProps) => {
   const [visible, setVisible] = useState(false);
 
   return (
-    <form action="submit" className="w-full max-w-md mx-auto p-6">
+    <form className="w-full max-w-md mx-auto p-6" onSubmit={handleLogin}>
       <p className="text-sm text-left font-semibold">Email</p>
       <Input
         formStyle={emailStyle}
@@ -45,7 +49,7 @@ const LoginForm = () => {
         required
       />
 
-      <a href="/forgot-password" className="flex max-w-fit text-sm align-left theme_text mb-2">
+      <a href="/auth/forgot-password" className="flex max-w-fit text-sm align-left theme_text mb-2">
         Forgot your password?
       </a>
 

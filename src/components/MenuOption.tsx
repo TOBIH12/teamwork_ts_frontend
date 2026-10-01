@@ -15,7 +15,7 @@ const MenuOption = ({ icon, options, style }: MenuOptions) => {
   };
 
   return (
-    <div className="relative" onClick={handleProfileClick} ref={ref}>
+    <div className="relative select-none" onClick={handleProfileClick} ref={ref}>
       {icon}
       <span
         className={

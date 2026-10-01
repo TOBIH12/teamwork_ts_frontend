@@ -1,8 +1,16 @@
 import { RiGroupLine } from 'react-icons/ri';
 import LoginForm from '../components/LoginForm';
 import TeamworkLogo from '../components/TeamworkLogo';
+import { useNavigate } from 'react-router-dom';
+import type { SubmitEvent } from 'react';
 
 const Login = () => {
+  const navigate = useNavigate();
+
+  const handleLogin = (e: SubmitEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    return navigate('/feed');
+  };
   return (
     <div className="w-full h-screen flex flex-col md:flex-row justify-center items-center">
       <div className="hidden md:flex md:flex-col w-1/2 h-full p-12 justify-center text-left theme_background text_white">
@@ -43,7 +51,7 @@ const Login = () => {
         <h1 className="text-3xl font-semibold mb-3">Welcome back</h1>
         <p className="text-gray-500 text-lg">Sign in to your account to continue</p>
 
-        <LoginForm />
+        <LoginForm handleLogin={handleLogin} />
 
         <p className="text-gray-500 text-md">
           Don't have an account?{' '}
