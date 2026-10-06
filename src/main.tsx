@@ -15,11 +15,12 @@ import Colleagues from './pages/Colleagues';
 import RegisterUser from './pages/RegisterUser';
 import ForgotPassword from './pages/ForgotPassword';
 import ResetPassword from './pages/ResetPassword';
+import { UserProvider } from './context/AuthContext';
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <Layout />,
+    element: <UserProvider><Layout /></UserProvider>,
     errorElement: <ErrorPage />,
     children: [
       { index: true, element: <Home /> },
@@ -32,7 +33,7 @@ const router = createBrowserRouter([
 
   {
     path: '/auth',
-    element: <AuthLayout />,
+    element: <UserProvider><AuthLayout /></UserProvider>,
     errorElement: <ErrorPage />,
     children: [
       { path: 'login', element: <Login /> },
