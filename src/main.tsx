@@ -20,7 +20,11 @@ import { UserProvider } from './context/AuthContext';
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <UserProvider><Layout /></UserProvider>,
+    element: (
+      <UserProvider>
+        <Layout />
+      </UserProvider>
+    ),
     errorElement: <ErrorPage />,
     children: [
       { index: true, element: <Home /> },
@@ -33,7 +37,11 @@ const router = createBrowserRouter([
 
   {
     path: '/auth',
-    element: <UserProvider><AuthLayout /></UserProvider>,
+    element: (
+      <UserProvider>
+        <AuthLayout />
+      </UserProvider>
+    ),
     errorElement: <ErrorPage />,
     children: [
       { path: 'login', element: <Login /> },

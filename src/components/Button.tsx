@@ -4,7 +4,7 @@ type ButtonProps = {
   type: 'submit' | 'reset' | 'button' | undefined;
   buttonStyle: string;
   icon?: ReactNode;
-  buttonText: string;
+  buttonText?: string;
   title: string;
 };
 

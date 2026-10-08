@@ -4,6 +4,7 @@ export interface User {
   firstName: string;
   lastName: string;
   jobRole: string;
+  userImg: string | null;
 }
 
 export interface AuthContextType {
@@ -11,4 +12,9 @@ export interface AuthContextType {
   login: (userData: User) => void;
   logout: () => void;
   isLoading?: boolean;
+}
+
+export interface LoginUserInput {
+  email: string;
+  password: string;
 }

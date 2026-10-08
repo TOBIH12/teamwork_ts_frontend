@@ -2,17 +2,55 @@ import { RiGroupLine } from 'react-icons/ri';
 import LoginForm from '../components/LoginForm';
 import TeamworkLogo from '../components/TeamworkLogo';
 import { useNavigate } from 'react-router-dom';
-import type { SubmitEvent } from 'react';
+import { useState, type SubmitEvent } from 'react';
+import { UserAuth } from '../context/AuthContext';
+import * as AuthTypes from '../types/authFlow.types';
+import axiosInstance from '../config/axios.config';
 
 const Login = () => {
+  const [userCred, setUserCred] = useState<AuthTypes.LoginUserInput>({
+    email: '',
+    password: '',
+  });
+  const [error, setError] = useState<string>('');
+  const [loading, setLoading] = useState<boolean>(false);
+  const { login } = UserAuth();
   const navigate = useNavigate();
 
-  const handleLogin = (e: SubmitEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    return navigate('/feed');
+  const changeInputHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setUserCred((prevState) => {
+      return { ...prevState, [e.target.name]: e.target.value };
+    });
   };
+
+  const handleLogin = async (e: SubmitEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setError('');
+    setLoading(true);
+    try {
+      await axiosInstance.post('/users/signin', userCred).then((response) => {
+        login(response.data.data);
+        setLoading(false);
+        navigate('/');
+        if (!response.data) {
+          setLoading(false);
+          return setError("Couldn't login user, please try again");
+        }
+      });
+    } catch (err: any) {
+      setLoading(false);
+      if (err.response) {
+        setError(err.response.data.error);
+      } else if (err.request) {
+        setError('No response from server, please try again later');
+      } else {
+        setError(`Error: ${err.message}`);
+      }
+    }
+  };
+
   return (
-    <div className="w-full flex flex-col lg:flex-row lg:h-screen h-full">
+    <div className="w-full flex flex-col lg:flex-row lg:h-screen h-full select-none">
       <div className="hidden lg:flex lg:flex-col w-1/2 p-12 justify-center text-left theme_background text_white">
         <TeamworkLogo
           logoStyle="flex gap-3 items-center mb-10"
@@ -51,7 +89,14 @@ const Login = () => {
         <h1 className="text-3xl font-semibold mb-3">Welcome back</h1>
         <p className="text-gray-500 text-lg">Sign in to your account to continue</p>
 
-        <LoginForm handleLogin={handleLogin} />
+        <LoginForm
+          handleLogin={handleLogin}
+          loading={loading}
+          error={error}
+          emailValue={userCred.email}
+          passwordValue={userCred.password}
+          changeInputHandler={changeInputHandler}
+        />
 
         <p className="text-gray-500 text-md">
           Don't have an account?{' '}

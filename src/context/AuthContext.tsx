@@ -1,51 +1,43 @@
-import { createContext, useContext, useEffect, useState } from "react";
-import * as AuthTypes from '../types/authFlow.types'
-
+import { createContext, useContext, useEffect, useState } from 'react';
+import * as AuthTypes from '../types/authFlow.types';
 
 export const UserContext = createContext<AuthTypes.AuthContextType | undefined>(undefined);
 
+export const UserProvider = ({ children }: any) => {
+  const [user, setUser] = useState<AuthTypes.User | null>(null);
 
-export const UserProvider = ({children}: any) => {
-    const [user, setUser] = useState<AuthTypes.User | null>(null)
-    const [isLoading, setisloading] = useState<boolean>(false);
-
-    useEffect(() =>{
-      setisloading(true)
-     const storedUser = localStorage.getItem('auth_user')
-        if(storedUser){
-         try {
-           setUser(JSON.parse(storedUser))
-         } catch (error: unknown) {
-          console.log('Failed to parse stored user data', error);
-          localStorage.removeItem(storedUser)
-         }
-        }
-        setisloading(false);
-    }, []);
-
-    const login = (userData: AuthTypes.User) => {
-      setUser(userData);
-      localStorage.setItem('auth_user', JSON.stringify(userData));
+  useEffect(() => {
+    const storedUser = localStorage.getItem('auth_user');
+    if (storedUser) {
+      try {
+        setUser(JSON.parse(storedUser));
+      } catch (error: unknown) {
+        console.log('Failed to parse stored user data', error);
+        localStorage.removeItem(storedUser);
+      }
     }
+  }, []);
 
-    const logout = () => {
-      setUser(null);
-      localStorage.removeItem('auth_user');
-      localStorage.removeItem('token');
-      localStorage.removeItem('userId');
-      localStorage.removeItem('firstName');
-      localStorage.removeItem('lastName');
-      localStorage.removeItem('jobRole');
-    }
+  const login = (userData: AuthTypes.User) => {
+    setUser(userData);
+    localStorage.setItem('auth_user', JSON.stringify(userData));
+    localStorage.setItem('auth_token', userData.token);
+  };
 
-  return  <UserContext.Provider value={{user, login, logout, isLoading}}>{children}</UserContext.Provider>
-}
+  const logout = () => {
+    setUser(null);
+    localStorage.removeItem('auth_user');
+    localStorage.removeItem('auth_token');
+  };
 
-export const userAuth = (): AuthTypes.AuthContextType => {
-    const context = useContext(UserContext);
-    if(!context){
-      throw new Error('useAuth must be used within an AuthProvider');
-    }
+  return <UserContext.Provider value={{ user, login, logout }}>{children}</UserContext.Provider>;
+};
 
-    return context
-}
+export const UserAuth = (): AuthTypes.AuthContextType => {
+  const context = useContext(UserContext);
+  if (!context) {
+    throw new Error('useAuth must be used within an AuthProvider');
+  }
+
+  return context;
+};
