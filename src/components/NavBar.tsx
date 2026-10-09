@@ -9,14 +9,15 @@ import { createButtonStyle, searchStyle } from './InputStyles';
 import Input from './Input';
 import Button from './Button';
 import { PreviewIcon } from './ProfileIcon';
-import SarahWash from '../assets/avatar1.jpg';
 import MenuOption from './MenuOption';
 import LeftNav from './LeftNav';
 import RightNav from './RightNav';
 import { useState } from 'react';
+import { UserAuth } from '../context/AuthContext';
 
 const NavBar = () => {
   const [menuClicked, setMenuClicked] = useState<boolean>(false);
+  const { user } = UserAuth();
 
   const handleMenuClick = () => {
     setMenuClicked((prev) => !prev);
@@ -27,7 +28,7 @@ const NavBar = () => {
       <div className="relative w-full items-center overflow-hidden z-10">
         <div className="fixed top-0 w-full flex items-center px-5 lg:px-13 py-3 justify-between border-b border-gray-200 bg-white/80 backdrop-blur-md">
           <Link
-            to={'/feed'}
+            to={'/'}
             className="hover:scale-105 transition duration-200"
             onClick={() => setMenuClicked(false)}
           >
@@ -67,14 +68,19 @@ const NavBar = () => {
             </div>
 
             <MenuOption
-              icon={<PreviewIcon source={SarahWash} alt="SW" />}
+              icon={
+                <PreviewIcon
+                  source={user?.userImg as string}
+                  alt={user?.firstName?.charAt(0) + '' + user?.lastName?.charAt(0)}
+                />
+              }
               options={
                 <>
                   <div className="flex flex-col w-full border-b border-gray-200 py-2 px-4">
                     <h1>
-                      Sarah Washington <small>| admin</small>{' '}
+                      {user?.firstName} {user?.lastName} <small>| {user?.jobRole}</small>{' '}
                     </h1>
-                    <p className="text-sm text-gray-500 mt-0">sarahwashington@company.com</p>
+                    <p className="text-sm text-gray-500 mt-0">{user?.email}</p>
                   </div>
 
                   <ul className="flex flex-col gap-1 py-1 px-2 border-b border-gray-200">
@@ -85,13 +91,15 @@ const NavBar = () => {
                       <MdPerson />
                       Profile
                     </Link>
-                    <Link
-                      to={'/auth/register-user'}
-                      className="flex w-full p-1 items-center align-center gap-2 rounded-xl font-light hover:bg-[#27aa83]/20 hover:text-[#27aa83] transition duration-200"
-                    >
-                      <MdOutlinePersonAddAlt />
-                      Register new user
-                    </Link>
+                    {user?.jobRole === 'admin' && (
+                      <Link
+                        to={'/auth/register-user'}
+                        className="flex w-full p-1 items-center align-center gap-2 rounded-xl font-light hover:bg-[#27aa83]/20 hover:text-[#27aa83] transition duration-200"
+                      >
+                        <MdOutlinePersonAddAlt />
+                        Register new user
+                      </Link>
+                    )}
                     <Link
                       to={'/settings'}
                       className="flex w-full p-1 items-center align-center gap-2 rounded-xl font-light hover:bg-[#27aa83]/20 hover:text-[#27aa83] transition duration-200"
@@ -112,7 +120,7 @@ const NavBar = () => {
                   </div>
                 </>
               }
-              style="right-2"
+              style="min-w-2xs right-2"
             />
 
             {!menuClicked ? (

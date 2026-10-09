@@ -7,16 +7,23 @@ export const UserProvider = ({ children }: any) => {
   const [user, setUser] = useState<AuthTypes.User | null>(null);
   const [error, setError] = useState<string>('');
 
-  useEffect(() => {
+  const handleUserAuthStorage = () => {
     const storedUser = localStorage.getItem('auth_user');
     if (storedUser) {
       try {
         setUser(JSON.parse(storedUser));
       } catch (error: unknown) {
-        setError('Failed to parse stored user data: ' + (error instanceof Error ? error.message : String(error)));
+        setError(
+          'Failed to parse stored user data: ' +
+            (error instanceof Error ? error.message : String(error))
+        );
         localStorage.removeItem(storedUser);
       }
     }
+  };
+
+  useEffect(() => {
+    handleUserAuthStorage();
   }, []);
 
   const login = (userData: AuthTypes.User) => {
@@ -33,7 +40,9 @@ export const UserProvider = ({ children }: any) => {
     setError('');
   };
 
-  return <UserContext.Provider value={{ user, login, logout, error }}>{children}</UserContext.Provider>;
+  return (
+    <UserContext.Provider value={{ user, login, logout, error }}>{children}</UserContext.Provider>
+  );
 };
 
 export const UserAuth = (): AuthTypes.AuthContextType => {

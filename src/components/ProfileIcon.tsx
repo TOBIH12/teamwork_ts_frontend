@@ -1,5 +1,5 @@
 type ProfileProps = {
-  source: string;
+  source: string | undefined;
   alt: string;
 };
 
