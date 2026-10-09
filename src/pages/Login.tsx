@@ -63,7 +63,7 @@ const Login = () => {
             Connect with your <br /> colleagues
           </h1>
           <p className="text-[1.25rem] text_gray">
-            The internal social network that brings teams <br /> together. Share ideas, celebrate
+            The internal social network that brings your team <br /> together. Share ideas, celebrate
             wins, and build <br /> stronger connections.
           </p>
         </div>
