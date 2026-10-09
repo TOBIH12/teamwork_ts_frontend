@@ -12,7 +12,6 @@ export const UserProvider = ({ children }: any) => {
       try {
         setUser(JSON.parse(storedUser));
       } catch (error: unknown) {
-        console.log('Failed to parse stored user data', error);
         localStorage.removeItem(storedUser);
       }
     }
@@ -36,7 +35,7 @@ export const UserProvider = ({ children }: any) => {
 export const UserAuth = (): AuthTypes.AuthContextType => {
   const context = useContext(UserContext);
   if (!context) {
-    throw new Error('useAuth must be used within an AuthProvider');
+    throw new Error('UserAuth must be used within an AuthProvider');
   }
 
   return context;
