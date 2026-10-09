@@ -5,6 +5,7 @@ export const UserContext = createContext<AuthTypes.AuthContextType | undefined>(
 
 export const UserProvider = ({ children }: any) => {
   const [user, setUser] = useState<AuthTypes.User | null>(null);
+  const [error, setError] = useState<string>('');
 
   useEffect(() => {
     const storedUser = localStorage.getItem('auth_user');
@@ -12,6 +13,7 @@ export const UserProvider = ({ children }: any) => {
       try {
         setUser(JSON.parse(storedUser));
       } catch (error: unknown) {
+        setError('Failed to parse stored user data: ' + (error instanceof Error ? error.message : String(error)));
         localStorage.removeItem(storedUser);
       }
     }
@@ -21,15 +23,17 @@ export const UserProvider = ({ children }: any) => {
     setUser(userData);
     localStorage.setItem('auth_user', JSON.stringify(userData));
     localStorage.setItem('auth_token', userData.token);
+    setError('');
   };
 
   const logout = () => {
     setUser(null);
     localStorage.removeItem('auth_user');
     localStorage.removeItem('auth_token');
+    setError('');
   };
 
-  return <UserContext.Provider value={{ user, login, logout }}>{children}</UserContext.Provider>;
+  return <UserContext.Provider value={{ user, login, logout, error }}>{children}</UserContext.Provider>;
 };
 
 export const UserAuth = (): AuthTypes.AuthContextType => {

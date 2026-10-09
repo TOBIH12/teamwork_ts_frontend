@@ -12,6 +12,7 @@ export interface AuthContextType {
   login: (userData: User) => void;
   logout: () => void;
   isLoading?: boolean;
+  error: string;
 }
 
 export interface LoginUserInput {
