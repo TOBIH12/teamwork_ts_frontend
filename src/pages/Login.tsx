@@ -17,12 +17,11 @@ const Login = () => {
   const { login,user } = UserAuth();
   const navigate = useNavigate();
 
-   useEffect(() => {
-      if (user || user !== null) {
-        navigate(-1);
-      }
-    }, [user, navigate]);
-
+  useEffect(() => {
+    if (user) {
+      navigate('/');
+    }
+  }, [user, navigate]);
 
   const changeInputHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUserCred((prevState) => {
