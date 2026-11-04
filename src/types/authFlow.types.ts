@@ -6,6 +6,7 @@ export interface User {
   email: string;
   jobRole: string;
   userImg: string | null;
+  expiresAt: number;
 }
 
 export interface AuthContextType {

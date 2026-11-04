@@ -2,7 +2,7 @@ import { RiGroupLine } from 'react-icons/ri';
 import LoginForm from '../components/LoginForm';
 import TeamworkLogo from '../components/TeamworkLogo';
 import { useNavigate } from 'react-router-dom';
-import { useState, type SubmitEvent } from 'react';
+import { useEffect, useState, type SubmitEvent } from 'react';
 import { UserAuth } from '../context/AuthContext';
 import * as AuthTypes from '../types/authFlow.types';
 import axiosInstance from '../config/axios.config';
@@ -14,8 +14,15 @@ const Login = () => {
   });
   const [error, setError] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
-  const { login } = UserAuth();
+  const { login,user } = UserAuth();
   const navigate = useNavigate();
+
+   useEffect(() => {
+      if (user || user !== null) {
+        navigate(-1);
+      }
+    }, [user, navigate]);
+
 
   const changeInputHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUserCred((prevState) => {
