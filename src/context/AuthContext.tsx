@@ -7,17 +7,26 @@ export const UserProvider = ({ children }: any) => {
   const [user, setUser] = useState<AuthTypes.User | null>(null);
   const [error, setError] = useState<string>('');
 
+  const ONE_DAY_MS = 24 * 60 * 60 * 1000;
+
   const handleUserAuthStorage = () => {
     const storedUser = localStorage.getItem('auth_user');
     if (storedUser) {
+      const parsedUser: AuthTypes.User = JSON.parse(storedUser);
       try {
-        setUser(JSON.parse(storedUser));
+       if (parsedUser.expiresAt > Date.now()) {
+          setUser(parsedUser);
+        } else {
+          localStorage.removeItem('auth_user');
+          localStorage.removeItem('auth_token');
+        }
       } catch (error: unknown) {
         setError(
           'Failed to parse stored user data: ' +
             (error instanceof Error ? error.message : String(error))
         );
-        localStorage.removeItem(storedUser);
+        localStorage.removeItem('auth_user');
+        localStorage.removeItem('auth_token');
       }
     }
   };
@@ -27,9 +36,13 @@ export const UserProvider = ({ children }: any) => {
   }, []);
 
   const login = (userData: AuthTypes.User) => {
-    setUser(userData);
-    localStorage.setItem('auth_user', JSON.stringify(userData));
-    localStorage.setItem('auth_token', userData.token);
+    const sessionData: AuthTypes.User = {
+      ...userData,
+      expiresAt: Date.now() + ONE_DAY_MS,
+    }
+    setUser(sessionData);
+    localStorage.setItem('auth_user', JSON.stringify(sessionData));
+    localStorage.setItem('auth_token', sessionData.token);
     setError('');
   };
 
