@@ -6,6 +6,7 @@ export interface User {
   email: string;
   jobRole: string;
   userImg: string | null;
+  expiresAt: number;
 }
 
 export interface AuthContextType {
@@ -19,4 +20,15 @@ export interface AuthContextType {
 export interface LoginUserInput {
   email: string;
   password: string;
+}
+
+export interface RegisterUserInput {
+  firstName: string;
+  lastName: string;
+  email: string;
+  password: string;
+  gender: string;
+  jobRole: string;
+  department: string;
+  address: string;
 }
