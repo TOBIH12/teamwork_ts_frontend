@@ -4,7 +4,7 @@ import { ToastContainer } from 'react-toastify';
 const Layout = () => {
   return (
     <>
-    <ToastContainer />
+      <ToastContainer />
       <NavBar />
       <div className="w-full lg:max-w-[calc(100%-34.3rem)] mt-16 lg:ml-[17%] py-4 px-10 min-h-[100vh] overflow-x-hidden">
         <Outlet />

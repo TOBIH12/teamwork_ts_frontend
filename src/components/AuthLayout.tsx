@@ -1,5 +1,5 @@
 import { Outlet } from 'react-router-dom';
-import { ToastContainer } from 'react-toastify'
+import { ToastContainer } from 'react-toastify';
 
 const AuthLayout = () => {
   return (
@@ -7,7 +7,7 @@ const AuthLayout = () => {
       <ToastContainer />
       <Outlet />;
     </>
-      )
+  );
 };
 
 export default AuthLayout;

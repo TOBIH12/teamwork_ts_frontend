@@ -14,7 +14,7 @@ export const UserProvider = ({ children }: any) => {
     if (storedUser) {
       const parsedUser: AuthTypes.User = JSON.parse(storedUser);
       try {
-       if (parsedUser.expiresAt > Date.now()) {
+        if (parsedUser.expiresAt > Date.now()) {
           setUser(parsedUser);
         } else {
           localStorage.removeItem('auth_user');
@@ -39,7 +39,7 @@ export const UserProvider = ({ children }: any) => {
     const sessionData: AuthTypes.User = {
       ...userData,
       expiresAt: Date.now() + ONE_DAY_MS,
-    }
+    };
     setUser(sessionData);
     localStorage.setItem('auth_user', JSON.stringify(sessionData));
     localStorage.setItem('auth_token', sessionData.token);
